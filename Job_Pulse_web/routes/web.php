@@ -33,6 +33,12 @@ Route::get('/jobs/detail/{id}', [JobsController::class,'detail'])->name('jobDeta
 Route::post('/apply-job', [JobsController::class,'applyJob'])->name('applyJob');
 Route::post('/saved-job', [JobsController::class,'savedJob'])->name('savedJob');
 
+Route::get('/forget-password', [AccountController::class,'forgetPassword'])->name('account.forgetPassword');
+Route::post('/process-forget-password', [AccountController::class,'processForgotPassword'])->name('account.processForgotPassword');
+Route::get('/reset-password/{token}', [AccountController::class,'resetPassword'])->name('account.resetPassword');
+Route::post('/process-reset-password', [AccountController::class,'processResetPassword'])->name('account.processResetPassword');
+
+
 Route::group(['prefix' => 'admin','middleware' => 'checkRole'], function() {
     Route::get('/dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
     Route::get('/users', [UserController::class,'index'])->name('admin.users');
